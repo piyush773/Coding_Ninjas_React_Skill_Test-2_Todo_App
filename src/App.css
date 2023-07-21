@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(
+      90deg,
+      rgba(48, 16, 255, 1) 0%,
+      rgba(100, 115, 255, 1) 100%
+    );
+  }
+
+  .todo-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 500px;
+    max-height: 510px;
+    background: #161a2b;
+    text-align: center;
+    margin: 50px auto 0;
+    border-radius: 10px;
+    padding-bottom: 32px;
+  }
+  
+  .h1-heading{
+    margin: 25px 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .complete {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+
+
+/* Todo Input Form styling */
+  .todo-form {
+    margin-bottom: 22px;
+  }
+  
+  .todo-input {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 320px;
+    background: transparent;
+    color: #fff;
+  }
+
+  .todo-input::placeholder {
+    color: #e2e2e2;
+  }
+
+  .todo-button {
+    padding: 16px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
+    background: linear-gradient(
+      90deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgba(155, 0, 250, 1) 100%
+    );
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+/* Todo Input Update Box styling */
+  .todo-input.edit {
+    border: 2px solid #149fff;
+  }
+  
+  .todo-button.edit {
+    background: linear-gradient(
+      90deg,
+      rgba(20, 159, 255, 1) 0%,
+      rgba(17, 122, 255, 1) 100%
+    );
+    padding: 16px 22px;
+  }
+
+
+
+/* Todo Filter And Clear-All Btn Styling */
+  .filter-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: -4px auto 20px;
+  }
+  .filter-select {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    background: rgb(38, 126, 227);
+    padding: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  .filter-select:hover{
+    background: rgb(2, 78, 164);
+  }
+  .clear-all-button {
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: #ff5a5a;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .clear-all-button:hover {
+    background-color: #e50000;
+  }
+
+  .spinner{
+    margin:30px auto;
+  }
+
+/* Todolist container styling */
+  .todoList-Container {
+    background: red;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    overflow-y: auto;
+    scrollbar-width:thin;
+  }
+  .todo-container::-webkit-scrollbar {
+    display: none; /* Remove scrollbar for Chrome, Safari, and Opera */
+  }
+
+/* different Background colors pattern for Todos styling   */
+  .todo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px auto;
+    color: #fff;
+    background: linear-gradient(90deg,rgba(255, 118, 20, 1) 0%,rgba(255, 84, 17, 1) 100%);
+    padding: 16px;
+    border-radius: 5px;
+    width: 90%;
+}
+
+  .todo-row:nth-child(4n + 1) {
+    background: linear-gradient(
+      90deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgba(155, 0, 250, 1) 100%
+    );
+  }
+  
+  .todo-row:nth-child(4n + 2) {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 12, 241, 1) 0%,
+      rgba(250, 0, 135, 1) 100%
+    );
+  }
+  
+  .todo-row:nth-child(4n + 3) {
+    background: linear-gradient(
+      90deg,
+      rgba(20, 159, 255, 1) 0%,
+      rgba(17, 122, 255, 1) 100%
+    );
+  }
+
+
+
+/* Todo check-box styling */
+  .todo-checkbox input[type='checkbox'] {
+    display: none;
+  }
+  
+  .todo-checkbox label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .todo-checkbox input[type='checkbox']:checked + label {
+    background-color: #034309;
+  }
+  
+  .todo-checkbox input[type='checkbox']:checked + label::before {
+    content: '\f00c';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 52px;
+  }
+
+
+
+/* Todo Delete and Edit icon styling */
+  .icons {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .delete-icon {
+    margin-right: 5px;
+    color: #fff;
+  }
+  .edit-icon {
+    color: #fff;
+  }
