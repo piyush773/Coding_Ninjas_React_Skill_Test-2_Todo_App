@@ -7,15 +7,17 @@ import Spinner from './ReactSpinner';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TodoList() {
+  // State variables
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState('All');
   const [loading, setLoading] = useState(true);
 
-
+  // Fetch todos from the API on component mounting
   useEffect(() => {
     fetchTodos();
   }, []);
 
+  // Fetch todos from the API
   const fetchTodos = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => {
@@ -35,7 +37,9 @@ function TodoList() {
   };
 
 
+  // Add a new todo to the list
   const addTodo = async todo => {
+    // Validate the todo text
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
@@ -45,6 +49,7 @@ function TodoList() {
     };
 
     try {
+      // Send a POST request to the API to add the new todo
       const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
         method: 'POST',
         headers: {
@@ -54,6 +59,7 @@ function TodoList() {
       });
       const data = await response.json();
 
+      // Update the todos state with the new todo and show a success toast
       setTodos(prevTodos => [data, ...prevTodos]);
       toast.success('Todo added successfully');
     } catch (error) {
@@ -61,7 +67,9 @@ function TodoList() {
     }
   };
 
+  // Update an existing todo
   const updateTodo = async (todoId, newValue) => {
+    // Validate the updated todo text
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
     }
@@ -71,6 +79,7 @@ function TodoList() {
     };
 
     try {
+       // Send a PUT request to the API to update the todo
       await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, {
         method: 'PUT',
         headers: {
@@ -79,6 +88,7 @@ function TodoList() {
         body: JSON.stringify(updatedTodo)
       });
 
+      // Update the todos state with the updated todo and show an info toast
       setTodos(prevTodos =>
         prevTodos.map(todo => (todo.id === todoId ? { ...todo, ...updatedTodo } : todo))
       );
@@ -88,12 +98,14 @@ function TodoList() {
     }
   };
 
+  // Remove a todo from the list
   const removeTodo = async id => {
     try {
+      // Send a DELETE request to the API to remove the todo
       await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: 'DELETE'
       });
-
+      // Update the todos state by filtering out the removed todo and show an error toast
       setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
       toast.error('Todo removed successfully');
     } catch (error) {
@@ -101,6 +113,7 @@ function TodoList() {
     }
   };
 
+  // Mark a todo as completed or incomplete
   const completeTodo = async id => {
     const todoToUpdate = todos.find(todo => todo.id === id);
     const updatedTodo = {
@@ -109,6 +122,7 @@ function TodoList() {
     };
 
     try {
+       // Send a PUT request to the API to update the completion status
       await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: 'PUT',
         headers: {
@@ -117,6 +131,7 @@ function TodoList() {
         body: JSON.stringify(updatedTodo)
       });
 
+       // Update the todos state with the updated completion status
       setTodos(prevTodos =>
         prevTodos.map(todo => (todo.id === id ? { ...todo, completed: updatedTodo.completed } : todo))
       );
@@ -125,6 +140,7 @@ function TodoList() {
     }
   };
 
+  // Filter the todos based on the selected filter option
   const filterTodos = () => {
     switch (filter) {
       case 'Complete':
@@ -136,10 +152,12 @@ function TodoList() {
     }
   };
 
+  // Handle filter option change
   const handleFilterChange = e => {
     setFilter(e.target.value);
   };
 
+  // Handle filter option change
   const clearAllTodos = () => {
     setTodos([]);
     toast.warning('All todos cleared');

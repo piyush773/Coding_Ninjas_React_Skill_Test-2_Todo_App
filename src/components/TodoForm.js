@@ -1,18 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function TodoForm(props) {
+  // State variable to store the input value
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
+  // Create a reference to the input element
   const inputRef = useRef(null);
 
+  // Focus on the input element when the component mounts or updates
   useEffect(() => {
     inputRef.current.focus();
   });
 
+  // Handle changes in the input field
   const handleChange = event => {
     setInput(event.target.value);
   };
 
+  // Handle changes on submit
   const handleSubmit = event => {
     event.preventDefault();
 
